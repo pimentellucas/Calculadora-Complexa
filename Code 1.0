@@ -218,10 +218,11 @@ if (operacao == 2){
 }
 //divisÃo
 if (operacao == 3){
-        resr = ((ai*ci)+(bi*di))/((ci*ci)+(di*di));
-        resi = ((bi*ci)-(ai*di))/((ci*ci)+(di*di));
-}while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
-    n = n+1;
+    resr = ((ai*ci)+(bi*di))/((ci*ci)+(di*di));
+    resi = ((bi*ci)-(ai*di))/((ci*ci)+(di*di));
+    while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
+        n = n+1;
+    }
 }
 //potenciaÇÃo
 if (operacao == 4){
