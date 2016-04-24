@@ -2,10 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-//FAZER INSTRUÇOES DE USO
-int main()
-{
-//Leitura da Sentença
+int main(){
 
 char soma[150];
 int n,sinala,sinalb,sinalc,sinald,tiponum1,tiponum2,operacao;
@@ -33,15 +30,15 @@ resr = 0;
 resi = 0;
 pi = 3.14159265358979323846;
 
-
+// LEITURA DA SENTENçA
 printf ( "Digite a operacao :\n" );
-scanf("%[^\n]c", soma); //lê o string sem parar ao dar espaço;
+scanf("%[^\n]c", soma);
 
 while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
     n = n+1;
 }
 
-if (soma[n] == '-'){                                         // se o primeiro numero comecar com -
+if (soma[n] == '-'){
     sinala = 1;
     n = n+1;
 }
@@ -49,7 +46,7 @@ while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && so
     n = n+1;
 }
 
-if (soma[n] == '+'){                                         // se o primeiro numero comecar com +
+if (soma[n] == '+'){
 n = n+1;
 }
 
@@ -57,41 +54,37 @@ while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && so
     n = n+1;
 }
 
-while (soma[n] != '-' && soma[n] != '+'){
-       a = (a * 10) + (soma[n] - 48);
-       n = n + 1;
+while(soma[n] != '-' && soma[n] != '+'){
+    a = (a * 10) + (soma[n] - 48);
+    n = n + 1;
     while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
-    n = n+1;
-}
+        n = n+1;
+    }
 }
 
 if (soma[n] == '-'){
-    sinalb = 1;                // para o sinal de b = -
+    sinalb = 1;
 }
 n = n+1;
 
 while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
     n = n+1;
 }
-
-
-    while (soma[n] != 'i'  && soma[n] != 'p' && soma[n] != '\0'){
-        b = (b * 10) + (soma[n] - 48);
-        n = n + 1;
-        while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
-    n = n+1;
-}                               //reconhece o numero e associa ele a "b"
+while (soma[n] != 'i'  && soma[n] != 'p' && soma[n] != '\0'){
+    b = (b * 10) + (soma[n] - 48);
+    n = n + 1;
+    while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
+        n = n+1;
+    }
 }
 
 if(soma[n] == 'p'){
-    tiponum1 = 1;           //se o número for Polar
+    tiponum1 = 1;
 }
 n = n+1;
-
 while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
     n = n+1;
 }
-
 
 if(soma[n] == '+'){                             //Soma
   operacao = 0;}
@@ -109,39 +102,32 @@ if(soma[n] == '+'){                             //Soma
                 operacao = 4;}
                         else
                         operacao = 5;           // Converter Polar retangular
-
 n = n+1;
-
 while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
     n = n+1;
 }
 
 if (soma[n] == 45){
     sinalc = 1;
-    n = n+1;                // para o sinal de b = -
+    n = n+1;
 }
-
 while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
     n = n+1;
 }
-
 if (soma[n] == 43){
     sinalc = 0;
-    n = n+1;                // para o sinal de b = +
+    n = n+1;
 }
-
 while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
     n = n+1;
 }
-
-
 if(operacao == '0' || operacao == '1' || operacao == '2' || operacao == '3'){
     while (soma[n] != '+' && soma[n] != '-'){
         c = (c * 10) + (soma[n] - 48);
         n = n + 1;
         while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
-    n = n+1;
-        }                             //reconhece o numero e associa ele a "c"
+            n = n+1;
+        }
     }
 }
 else
@@ -150,29 +136,28 @@ else
         n = n + 1;
         while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
             n = n+1;
-        }                             //reconhece o numero e associa ele a "c"
+        }
     }
 
 if (soma[n] == '-'){
-    sinald = 1;                // para o sinal de b = -
+    sinald = 1;
 }
 n = n+1;
-
 while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
     n = n+1;
 }
-
-    while (soma[n] != 'i'  && soma[n] != 'p'){
-        d = (d * 10) + (soma[n] - 48);
-        n = n + 1;
-        while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
-    n = n+1;
-}                              //reconhece o numero e associa ele a "d"
+while (soma[n] != 'i'  && soma[n] != 'p'){
+    d = (d * 10) + (soma[n] - 48);
+    n = n + 1;
+    while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
+        n = n+1;
+    }
 }
-
 if(soma[n] == 'p'){
-    tiponum2 = 1;           //se o número for Polar
+    tiponum2 = 1;
 }
+
+//NUMEROS NEGATIVOS
 
 if(sinala == 1){
     a = a * (-1);
@@ -187,20 +172,21 @@ if(sinald == 1){
     d = d * (-1);
 }
 
-if (tiponum1 == 1){
+//CONVERSãO RETANGULAR/POLAR
+
+    if (tiponum1 == 1){
     ap = a;
     bp = b;
     ai = cos(b * pi/180) * a;
     bi = sin(b * pi/180) * a;
 }
-
 if(tiponum2 == 1){
     ci = cos(d * pi/180) * c;
     di = sin(d * pi/180) * c;
 }
 if(tiponum1 == 0){
     ap = sqrt((a*a)+(b*b));
-    bp = (atan2(a, b) * pi/180);
+    bp = (atan(b/a)* (180/pi));
     ai = a;
     bi = b;
 }
@@ -209,29 +195,31 @@ if(tiponum2 == 0){
     di = d;
 }
 
-//SOMA
+//OPERAÇÕES
+
+//soma
 if (operacao == 0){
         resr = ai + ci;
         resi = bi + di;
 }
-//SUBTRAÇÂO
+//subtraÇÂo
 if (operacao == 1){
         resr = ai - ci;
         resi = bi - di;
 }
-//MULTIPLICAÇÃO
+//multiplicaÇÃo
 if (operacao == 2){
         resr = (ai*ci) - (bi*di);
         resi = (ai*di) + (bi*ci);
 }
-//DIVISÃO
+//divisÃo
 if (operacao == 3){
         resr = ((ai*ci)+(bi*di))/((ci*ci)+(di*di));
         resi = ((bi*ci)-(ai*di))/((ci*ci)+(di*di));
 }while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
     n = n+1;
 }
-//POTENCIAÇÃO
+//potenciaÇÃo
 if (operacao == 4){
         resr = ai;
         resi = bi;
@@ -243,10 +231,7 @@ if (operacao == 4){
         c = c - 1;
     }
 }
-if(operacao == 0 || operacao == 1 || operacao == 2 || operacao == 3 ||operacao == 4){
-    printf("o resultado e:\n%.2lf + %.2lfi\n", resr, resi);
-}
-//Conversão
+//conversÃo
 if(operacao == 5){
     if(tiponum1 == 0){
         resr = ap;
@@ -258,6 +243,10 @@ if(operacao == 5){
         resi = bi;
         printf("o numero na forma retangular e:\n%.2lf + %.2lfi\n", resr, resi);
     }
+}
+//resultado
+if(operacao == 0 || operacao == 1 || operacao == 2 || operacao == 3 ||operacao == 4){
+    printf("o resultado e:\n%.2lf + %.2lfi\n", resr, resi);
 }
 return 0;
 }
