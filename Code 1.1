@@ -5,7 +5,7 @@
 int main(){
 
 char soma[150];
-int n,sinala,sinalb,sinalc,sinald,tiponum1,tiponum2,operacao;
+int n,sinala,sinalb,sinalc,sinald,tiponum1,tiponum2,operacao,result;
 double a,b,c,d,ai,bi,ci,di,ap,bp,resr,resi,pi;
 
 n = 0;
@@ -16,6 +16,7 @@ sinald = 0;
 tiponum1 = 0;
 tiponum2 = 0;
 operacao = 5;
+result = 2;
 a = 0;
 b = 0;
 c = 0;
@@ -251,7 +252,22 @@ if(operacao == 5){
 }
 //resultado
 if(operacao == 0 || operacao == 1 || operacao == 2 || operacao == 3 ||operacao == 4){
-    printf("o resultado e:\n%.2lf + %.2lfi\n", resr, resi);
-}
-return 0;
+
+    while(result != -1){
+        printf("Escolha a forma de apresentacao do resultado:\n(0)Retangular\n(1)Polar\n");
+        scanf("%d", &result);
+        if(result == 0){
+                printf("o resultado e:\n%.2lf + %.2lfi\n", resr, resi);
+                result = -1;
+        }
+        else
+            if(result == 1){
+                ap = sqrt((resr*resr)+(resi*resi));
+                bp = (atan(resi/resr)* (180/pi));
+                printf("o resultado e:\n%.2lf + %.2lfp\n", ap, bp);
+                result = -1;
+            }
+            else
+                printf("Apenas 0 e 1 sao aceitos.\n");
+    }
 }
