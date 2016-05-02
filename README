@@ -35,26 +35,67 @@ Calculadora de Números Complexos
 BELO HORIZONTE
 2016
 
+
+
+
+
 Descrição sucinta sobre o desenvolvimento do trabalho.
 
-Para facilitar a execução do código, as funções foram divididas basicamente em Leitura, Conversão e Operações.
-Para que se pudesse entrar com números polares e retangulares em qualquer combinação, independente da operação a ser executada, a conversão é feita e as operações são executadas com o numero convertido na forma retangular. Após feita a operação, o resultado é convertido para a forma polar, podendo o usuário escolher em qual forma o resultado deve ser apresentado através de uma flag específica.
-Os números lidos são separados em parte real e em parte imaginaria sendo associados a variáveis “a”, “b”, “c”, “d”. Além disso, a função de leitura também identifica se os números são negativos ou não, se os números são da forma polar ou retangular, bem como a operação a ser executada. Estes controles são feitos através de flags.
-Para execução das operações eram necessárias as funções seno, cosseno, arctangente e π (pi), então foi acrescentado a biblioteca math.h que contem as funções e foi definido uma variável “pi” que contem pi com 20 algarismo para uma aproximação bem fidedigna do valor real, sendo o resultado no final arredondado com duas casas após a virgula.
-Foi usado o tipo numérico int para as flags e para o indice “n” do vetor e para pi e os números de entrada foi necessário o uso do tipo numérico double, uma vez que pi tem infinitas casas decimais e como entrada  das funções seno, cosseno, arctangente, os números devem ser do tipo double, que é pré-requisito dessas funções;
-Descrição das funções e suas interdependências.
-A leitura é feita através de uma string associada ao vetor “soma[]” em que cada parte do vetor corresponde a um caractere digitado na entrada. A leitura é feita casa a casa, associando “n” ao índice da posição do vetor, a medida que “n” vai sendo incrementado o vetor vai tendo todas suas casas lidas. Como os numero complexos têm formas predefinidas, basta fazer a leitura até um caractere especifico.
-A fim de se ignorar possíveis espaços e/ou outros caracteres aleatórios digitados na entrada, foi feito uma função que após cada incrementação de “n”, verifica-se o próximo caractere a ser lido, se pertence ao conjunto de caracteres usados nas operações.
-As sentenças de entrada são da forma a+bi(operação)c+di=, sendo que o “i” pode alternar com “p” e os valores de “a”, “b”, “c” e “d” podem apresentar sinais de positivo ou negativo. Ao ser entrada, uma sentença é associada a um vetor soma[]que para ser operada, é necessário que sua leitura seja feita por partes. Como as sentenças de entrada sempre seguem este padrão, a leitura é feita a partir da variação dos índices do vetor soma[].
-Primeiro o programa procura por um sinal, seja ele de positivo ou negativo, caso este seja negativo, a variável “sinala” é definida como 1, caso seja positivo ou inexistente, a variável assume valor 0 e incrementa o valor do índice para que a próximo item do vetor seja lido.
-O vetor então passara a ler os valores relacionados à parte real do primeiro número, então lê-se o item da posição atual do vetor e associando ele à variável “a”, até que o sinal de positivo ou negativo da parte imaginaria seja encontrado, indicando assim o fim da parte real.
-Faz-se a leitura desse sinal e de maneira similar ao sinal da parte real, associamos ele à variável “sinalb”. A parte imaginaria começa a ser lida e associada à “b” até que se encontre um “i” ou “p” indicando se o número anterior está na forma retangular ou polar e colocando a flag 0 ou 1 na variável “tiponum1”, respectivamente.
-As operações lidas são associadas aos números “0”, “1”, “2”, “3”, “4”, “5”, sendo respectivamente: soma, subtração, divisão, multiplicação, potencia por numero inteiro e conversão. A função “operacao” inicia-se pela função de conversão para evitar possíveis erros pelo fato de não conter nenhum operador na sentença digitada.
-Finalmente o segundo número é lido de maneira semelhante ao primeiro, fazendo uso das variáveis “c”, “d”, “sinalc”, “sinald”, “tiponum2”.
-Na segunda parte do programa é feita a conversão dos números, utilizando as flags “tiponum1” e “tiponum2” para identificar qual é a conversão necessária. As conversões são feitas segundos os conceitos matemáticos dos números complexos, o Plano de Argand-Gauss e conceitos de modulo de vetores algébricos e de ângulo . Independente do modo de entrada todos os números são associado a uma segunda variável sendo “ai”, “bi”, “ci”, “di”, para forma retangular e “ap” e “bp”, para a forma polar, pelos motivos dissertados na descrição.
-Por último é feita a operação propriamente dita, os algoritomos usado são a própria definição das operações, sendo que todas são feitas com as variáveis dos números convertidos.
-Para apresentação do resultado o usuário pode escolher entre a forma Retangular e a forma Polar, caso escolha a forma retangular, o resultado obtido na operação será simplesmente apresentado, caso escolha a forma polar, o resultado obtido na operação  será convertido e então apresentado. 
+	Para facilitar a execução do código, as funções foram divididas basicamente em Leitura, Conversão e Operações.
+Para que se pudesse entrar com números polares e retangulares em qualquer combinação, independente da operação a ser executada,
+a conversão é feita e as operações são executadas com o numero convertido na forma retangular. Após feita a operação, o
+resultado é convertido para a forma polar, podendo o usuário escolher em qual forma o resultado deve ser apresentado através de
+uma flag específica.
+	Os números lidos são separados em parte real e em parte imaginaria sendo associados a variáveis “a”, “b”, “c”, “d”.
+Além disso, a função de leitura também identifica se os números são negativos ou não, se os números são da forma polar ou
+retangular, bem como a operação a ser executada. Estes controles são feitos através de flags.
+	Para execução das operações eram necessárias as funções seno, cosseno, arctangente e π (pi), então foi acrescentado a
+biblioteca math.h que contem as funções e foi definido uma variável “pi” que contem pi com 20 algarismo para uma aproximação
+bem fidedigna do valor real, sendo o resultado no final arredondado com duas casas após a virgula.
+	Foi usado o tipo numérico int para as flags e para o indice “n” do vetor e para pi e os números de entrada foi
+necessário o uso do tipo numérico double, uma vez que pi tem infinitas casas decimais e como entrada  das funções seno,
+cosseno, arctangente, os números devem ser do tipo double, que é pré-requisito dessas funções
 
+
+
+
+Descrição das funções e suas interdependências
+
+	A leitura é feita através de uma string associada ao vetor “soma[]” em que cada parte do vetor corresponde a um
+caractere digitado na entrada. A leitura é feita casa a casa, associando “n” ao índice da posição do vetor, a medida que “n”
+vai sendo incrementado o vetor vai tendo todas suas casas lidas. Como os numero complexos têm formas predefinidas, basta fazer
+a leitura até um caractere especifico.
+	A fim de se ignorar possíveis espaços e/ou outros caracteres aleatórios digitados na entrada, foi feito uma função que
+após cada incrementação de “n”, verifica-se o próximo caractere a ser lido, se pertence ao conjunto de caracteres usados nas
+operações.
+	As sentenças de entrada são da forma a+bi(operação)c+di=, sendo que o “i” pode alternar com “p” e os valores de “a”, “b”,
+“c” e “d” podem apresentar sinais de positivo ou negativo. Ao ser entrada, uma sentença é associada a um vetor soma[]que para
+ser operada, é necessário que sua leitura seja feita por partes. Como as sentenças de entrada sempre seguem este padrão, a
+leitura é feita a partir da variação dos índices do vetor soma[].
+	Primeiro o programa procura por um sinal, seja ele de positivo ou negativo, caso este seja negativo, a variável “sinala”
+é definida como 1, caso seja positivo ou inexistente, a variável assume valor 0 e incrementa o valor do índice para que o
+próximo item do vetor seja lido.
+	O vetor então passara a ler os valores relacionados à parte real do primeiro número, então lê-se o item da posição atual
+do vetor e associando ele à variável “a”, até que o sinal de positivo ou negativo da parte imaginaria seja encontrado,
+indicando assim o fim da parte real.
+	Faz-se a leitura desse sinal e de maneira similar ao sinal da parte real, associamos ele à variável “sinalb”. A parte
+imaginaria começa a ser lida e associada à “b” até que se encontre um “i” ou “p” indicando se o número anterior está na forma
+retangular ou polar e colocando a flag 0 ou 1 na variável “tiponum1”, respectivamente.
+	As operações lidas são associadas aos números “0”, “1”, “2”, “3”, “4”, “5”, sendo respectivamente: soma, subtração,
+divisão, multiplicação, potencia por numero inteiro e conversão. A função “operacao” inicia-se pela função de conversão para
+evitar possíveis erros pelo fato de não conter nenhum operador na sentença digitada.
+	Finalmente o segundo número é lido de maneira semelhante ao primeiro, fazendo uso das variáveis “c”, “d”, “sinalc”,
+“sinald”, “tiponum2”.
+	Na segunda parte do programa é feita a conversão dos números, utilizando as flags “tiponum1” e “tiponum2” para
+identificar qual é a conversão necessária. As conversões são feitas segundos os conceitos matemáticos dos números complexos,
+o Plano de Argand-Gauss e conceitos de modulo de vetores algébricos e de ângulo . Independente do modo de entrada todos os
+números são associado a uma segunda variável sendo “ai”, “bi”, “ci”, “di”, para forma retangular e “ap” e “bp”, para a forma
+polar, pelos motivos dissertados na descrição.
+	Por último é feita a operação propriamente dita, os algoritomos usado são a própria definição das operações, sendo que
+todas são feitas com as variáveis dos números convertidos.
+	Para apresentação do resultado o usuário pode escolher entre a forma Retangular e a forma Polar, caso escolha a forma
+retangular, o resultado obtido na operação será simplesmente apresentado, caso escolha a forma polar, o resultado obtido na
+operação  será convertido e então apresentado. 
 
 
 
@@ -67,7 +108,6 @@ Retangular: a+bi
 Polar: c+dp
 Sendo a, b, c, d, números inteiros.
 
-
 Os operadores:
 +: para somar
 -: para subtrair
@@ -76,26 +116,45 @@ Os operadores:
 ^: para elevar à um numero real
 E sem operador para converter para a outra forma.
 
-Qualquer outro caractere diferente destes, incluindo possíveis espaços entre os números, será ignorado na composição das variáveis.
+	Qualquer outro caractere diferente destes, incluindo possíveis espaços entre os números, será ignorado na composição
+das variáveis.
 Mesmo que o valor de um dos números seja 0 (zero) deve-se entrar com ele.
 Deve-se entrar funções do tipo:
 	a+bi (operação) c+dp
-podendo variar entre as formas polar e retangular independente da combinação e  a, b, c, d podem ser tanto positivos quanto negativos
-Caso hajam sinais seguidos, excetuando-se o sinal do operador e da parte real do segundo numero, o programa retorna 1 e finaliza.
+podendo variar entre as formas polar e retangular independente da combinação e  a, b, c, d podem ser tanto positivos quanto
+negativos
+Caso hajam sinais seguidos, excetuando-se o sinal do operador e da parte real do segundo numero, o programa retorna 1 e
+finaliza.
+
+
+
+
 
 Descrição do formato de saída dos dados
 
-Depois da execução da operação, é solicitado ao usuário informar a forma em que ele deseja receber seu resultado, forma polar ou retangular e este é apresentado tal qual é feito a entrada.
+	Depois da execução da operação, é solicitado ao usuário informar a forma em que ele deseja receber seu resultado,
+forma polar ou retangular e este é apresentado tal qual é feito a entrada.
+
+
+
+
 Explicações sobre como utilizar o programa.
-Essa calculadora opera com numeros complexos da forma a+bi (retangular) e da forma c+dp (polar), sendo c o vetor e d o angulo\
-Pode se entrar quaisquer combinacoes dessas duas formas e os operadores: adição(+) subtração(-) divisão(/) Multiplicação(*) potência inteira(^) e para conversão entre as formas, entre apenas com o numero, sem nenhum operador.
-Entre com todos os valores, mesmo que iguais a 0
+
+	Essa calculadora opera com numeros complexos da forma a+bi (retangular) e da forma c+dp (polar), sendo c o vetor
+e d o angulo
+	Pode se entrar quaisquer combinacoes dessas duas formas e os operadores: adição(+) subtração(-) divisão(/)
+Multiplicação(*) potência inteira(^) e para conversão entre as formas, entre apenas com o numero, sem nenhum operador.
+	Entre com todos os valores, mesmo que iguais a 0
+
 
 
 
 Testes
 
-Foram testados todas as operações fornecidas na proposta do TP, inclusive com espaços e caracteres aleatórios
+	Foram testados todas as operações fornecidas na proposta do TP, inclusive com espaços e caracteres aleatórios
+
+
+
 
 Conclusão
 
