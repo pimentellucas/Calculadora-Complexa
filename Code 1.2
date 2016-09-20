@@ -6,7 +6,7 @@
 int main(){
 
 char soma[150];
-int n,sinala,sinalb,sinalc,sinald,tiponum1,tiponum2,operacao,result;
+int n,sinala,sinalb,sinalc,sinald,tiponum1,tiponum2,operacao,result,repeat = 1;
 double a,b,c,d,ai,bi,ci,di,ap,bp,resr,resi,pi;
 
 // LEITURA DA SENTENçA
@@ -18,7 +18,8 @@ printf("Caso a funcao principal tenha mais de um sinal para o mesmo numero, o se
 printf("Deve-se colocar o sinal de = ao final da sentença.\n\n");
 do{
 
-n = 0;
+soma[0] = 0;
+n = 0;              // as variaveis estao sendo deginidas dentro do "do" para que a cada vez que seja solicitado uma nova operacao, tudo seja resetado.
 sinala = 0;
 sinalb = 0;
 sinalc = 0;
@@ -40,12 +41,11 @@ bp = 0;
 resr = 0;
 resi = 0;
 pi = 3.14159265358979323846;
-soma[0] = 0;
 
 printf("Entre com a sentenca:\n");
-scanf("%s", soma);
+scanf(" %[^\n]s", soma); // o espaço entre a " e o % serve para limpar o buffer
 
-while(soma[n] != '-' && soma[n] != '+' &&  soma[n] < 48 && soma[n] > 57 && soma[n] != 's'){
+while(soma[n] != '-' && soma[n] != '+' &&  (soma[n] < 48 || soma[n] > 57) && soma[n] != 's'){
     n = n+1;
 }                   //Essa função se repete ao longo do TP com o intuito de eliminar os lixos de digitação, sendo que em cada situação elimina lixos especificos
                     //Nessa casa da string tem-se como caracteres validos + - um algarismo ou o "s", para sair.
@@ -57,7 +57,7 @@ if (soma[n] == '-'){
     sinala = 1;
     n = n+1;
 }
-while(soma[n] < 48 && soma[n] > 57){        //como o programa nao foi encerrado com a função sair,
+while(soma[n] < 48 || soma[n] > 57){        //como o programa nao foi encerrado com a função sair,
         n = n+1;                            //achado o sinal do primeiro numero, apenas um numero é admitido como caracter valido
 }
 
@@ -65,7 +65,7 @@ if (soma[n] == '+'){
    n = n+1;
 }
 
-while(soma[n] < 48 && soma[n] > 57){         //mesmo caso do sinal negativo como primeiro caracter da string.
+while(soma[n] < 48 || soma[n] > 57){         //mesmo caso do sinal negativo como primeiro caracter da string.
     n = n+1;
 }
 
@@ -73,7 +73,7 @@ while(soma[n] != '-' && soma[n] != '+'){     //nessa parte o programa percorre a
         a = (a * 10) + (soma[n] - 48);
     n = n + 1;
 
-    while(soma[n] != '-' && soma[n] != '+'&&  soma[n] < 48 && soma[n] > 57){  //sao validos caracteres como os sinais de positivo e nagativo ou algarismos.
+    while(soma[n] != '-' && soma[n] != '+'&&  (soma[n] < 48 || soma[n] > 57)){  //sao validos caracteres como os sinais de positivo e nagativo ou algarismos.
         n = n+1;
     }
 }
@@ -83,7 +83,7 @@ if (soma[n] == '-'){    //caso a parte imaginaria do primeiro numero seja negati
 }
 n = n+1;
 
-while(soma[n] < 48 && soma[n] > 57){    //achado o sinal da parte imaginaria do primeiro numero, apenas se admite algarismos como valido.
+while(soma[n] < 48 || soma[n] > 57){    //achado o sinal da parte imaginaria do primeiro numero, apenas se admite algarismos como valido.
     n = n+1;
 }
 
@@ -91,7 +91,7 @@ while (soma[n] != 'i'  && soma[n] != 'p'){  //percorre-se a string, formando o s
     b = (b * 10) + (soma[n] - 48);
     n = n + 1;
 
-    while(soma[n] < 48 && soma[n] > 57 && soma[n] != 'i' && soma[n] != 'p'){    //apenas i, p ou um algarismo são considerados validos nessa parte.
+    while((soma[n] < 48 || soma[n] > 57) && soma[n] != 'i' && soma[n] != 'p'){    //apenas i, p ou um algarismo são considerados validos nessa parte.
         n = n+1;
     }
 }
@@ -124,7 +124,7 @@ n = n+1;
 
             //COLOCAR UM WHILE PRA PULAR TUDO NO CASO DE CONVERSÃO
 
-    while(soma[n] < 48 && soma[n] > 57 && soma[n] != '-'){      //são validos os algarismo e um caracter de -. o caracter de + é desnecessario.{
+    while((soma[n] < 48 || soma[n] > 57) && soma[n] != '-'){      //são validos os algarismo e um caracter de -. o caracter de + é desnecessario.{
     n = n+1;
 }
 
@@ -132,7 +132,7 @@ if (soma[n] == '-'){
     sinalc = 1;
     n = n+1;
 }
-while(soma[n] < 48 && soma[n] > 57){            //nesse caso se e aceito um algarismo como caracter valido
+while(soma[n] < 48 || soma[n] > 57){            //nesse caso se e aceito um algarismo como caracter valido
     n = n+1;
 }
 
@@ -140,7 +140,7 @@ if (soma[n] == '+'){
     sinalc = 0;
     n = n+1;
 }
-while(soma[n] < 48 && soma[n] > 57){            //nesse caso se e aceito um algarismo como caracter valido
+while(soma[n] < 48 || soma[n] > 57){            //nesse caso se e aceito um algarismo como caracter valido
     n = n+1;
 }
 
@@ -148,7 +148,7 @@ if(operacao == 0 || operacao == 1 || operacao == 2 || operacao == 3){
     while (soma[n] != '+' && soma[n] != '-'){
         c = (c * 10) + (soma[n] - 48);
         n = n + 1;
-        while(soma[n] < 48 && soma[n] > 57 && soma[n] != '+' && soma[n] != '-'){    // a leitura do segundo numero se da de maneira analoga a do primeiro numero.
+        while((soma[n] < 48 || soma[n] > 57) && soma[n] != '+' && soma[n] != '-'){    // a leitura do segundo numero se da de maneira analoga a do primeiro numero.
             n = n+1;
         }
     }
@@ -158,14 +158,14 @@ if(operacao == 0 || operacao == 1 || operacao == 2 || operacao == 3){
     }
     n = n+1;
 
-    while(soma[n] < 48 && soma[n] > 57){
+    while(soma[n] < 48 || soma[n] > 57){
         n = n+1;
     }
 
     while (soma[n] != 'i'  && soma[n] != 'p'){
         d = (d * 10) + (soma[n] - 48);
         n = n + 1;
-        while(soma[n] < 48 && soma[n] > 57 && soma[n] != 'i' && soma[n] != 'p'){
+        while((soma[n] < 48 || soma[n] > 57) && soma[n] != 'i' && soma[n] != 'p'){
                 n = n+1;
         }
     }
@@ -286,7 +286,7 @@ if(operacao == 0 || operacao == 1 || operacao == 2 || operacao == 3 ||operacao =
                 printf("Apenas 0 e 1 sao aceitos.\n");
     }
 }
-n = 0;} while(n == 0);
+} while(repeat == 1);
 
 return 0;
 }
