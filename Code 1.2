@@ -2,11 +2,21 @@
 #include <stdlib.h>
 #include <math.h>
 
+
 int main(){
 
 char soma[150];
 int n,sinala,sinalb,sinalc,sinald,tiponum1,tiponum2,operacao,result;
 double a,b,c,d,ai,bi,ci,di,ap,bp,resr,resi,pi;
+
+// LEITURA DA SENTENçA
+
+printf("Essa calculadora opera com numeros complexos da forma a+bi (retangular)\ne da forma c+dp (polar), sendo c o vetor e d o angulo\n");
+printf("Pode se entrar quaisquer combinacoes dessas duas formas e os operadores:\n\nAdicao +\nSubtracao -\nDivisao /\nMultiplicacao *\nPotencia Inteira e\npara conversao entre as formas, entre apenas com o numero, sem operador\n\n");
+printf("Entre com todos os valores, mesmo que iguais a 0, com i na forma retangualar\ne como p na forma polar\n\n");
+printf("Caso a funcao principal tenha mais de um sinal para o mesmo numero, o segundo sinal sera ignorado.\n");
+printf("Deve-se colocar o sinal de = ao final da sentença.\n\n");
+do{
 
 n = 0;
 sinala = 0;
@@ -30,75 +40,67 @@ bp = 0;
 resr = 0;
 resi = 0;
 pi = 3.14159265358979323846;
+soma[0] = 0;
 
-// LEITURA DA SENTENçA
-
-printf("Essa calculadora opera com numeros complexos da forma a+bi (retangular)\ne da forma c+dp (polar), sendo c o vetor e d o angulo\n");
-printf("Pode se entrar quaisquer combinacoes dessas duas formas e os operadores:\n\nAdicao +\nSubtracao -\nDivisao /\nMultiplicacao *\nPotencia Inteira ^\npara conversao entre as formas, entre apenas com o numero, sem operador\n\n");
-printf("Entre com todos os valores, mesmo que iguais a 0, com i na forma retangualar\ne como p na forma polar\n\n");
-printf("Caso a funcao principal retorne 0, a operacao foi bem sucedida\nCaso retorne 1, houve erro de sinais\n\n");
 printf("Entre com a sentenca:\n");
-scanf("%[^\n]c\n", soma);
+scanf("%s", soma);
 
-while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
+while(soma[n] != '-' && soma[n] != '+' &&  soma[n] < 48 && soma[n] > 57 && soma[n] != 's'){
     n = n+1;
+}                   //Essa função se repete ao longo do TP com o intuito de eliminar os lixos de digitação, sendo que em cada situação elimina lixos especificos
+                    //Nessa casa da string tem-se como caracteres validos + - um algarismo ou o "s", para sair.
+if(soma[0] == 's'){
+    exit(0);
 }
 
 if (soma[n] == '-'){
     sinala = 1;
     n = n+1;
 }
-
-while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
-    n = n+1;
+while(soma[n] < 48 && soma[n] > 57){        //como o programa nao foi encerrado com a função sair,
+        n = n+1;                            //achado o sinal do primeiro numero, apenas um numero é admitido como caracter valido
 }
 
 if (soma[n] == '+'){
    n = n+1;
 }
 
-while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
+while(soma[n] < 48 && soma[n] > 57){         //mesmo caso do sinal negativo como primeiro caracter da string.
     n = n+1;
 }
 
-if (soma[n] == '+' || soma[n] == '-'){
-    return 1;
-}
-
-while(soma[n] != '-' && soma[n] != '+'){
-    a = (a * 10) + (soma[n] - 48);
+while(soma[n] != '-' && soma[n] != '+'){     //nessa parte o programa percorre a string ate que se ache um sinal de + ou -, referente a parte imaginaria do primeiro numero.
+        a = (a * 10) + (soma[n] - 48);
     n = n + 1;
-    while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
+
+    while(soma[n] != '-' && soma[n] != '+'&&  soma[n] < 48 && soma[n] > 57){  //sao validos caracteres como os sinais de positivo e nagativo ou algarismos.
         n = n+1;
     }
 }
 
-if (soma[n] == '-'){
+if (soma[n] == '-'){    //caso a parte imaginaria do primeiro numero seja negativa, tem-se uma flag.
     sinalb = 1;
 }
 n = n+1;
 
-while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
+while(soma[n] < 48 && soma[n] > 57){    //achado o sinal da parte imaginaria do primeiro numero, apenas se admite algarismos como valido.
     n = n+1;
 }
 
-if (soma[n] == '+' || soma[n] == '-'){
-    return 1;
-}
-
-while (soma[n] != 'i'  && soma[n] != 'p' && soma[n] != '\0' ){
+while (soma[n] != 'i'  && soma[n] != 'p'){  //percorre-se a string, formando o segundo numero, até que p ou i sejam identificados, indicando que a parte imaginaria do primeiro numero acabou.
     b = (b * 10) + (soma[n] - 48);
     n = n + 1;
-    while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
+
+    while(soma[n] < 48 && soma[n] > 57 && soma[n] != 'i' && soma[n] != 'p'){    //apenas i, p ou um algarismo são considerados validos nessa parte.
         n = n+1;
     }
 }
 
-if(soma[n] == 'p'){
+if(soma[n] == 'p'){     //caso seja encontrado p, levanta uma flag, indicando que o numero é polar.
     tiponum1 = 1;
 }
 n = n+1;
-while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
+    while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != 'e' && soma[n] != '='){
     n = n+1;
 }
 
@@ -114,79 +116,69 @@ if(soma[n] == '+'){                             //Soma
                 if(soma[n] == '/'){             //Divisão
             operacao = 3;}
                 else
-                    if(soma[n] == '^'){         // Potencia
+                    if(soma[n] == 'e'){         // Potencia
                 operacao = 4;}
-                        else
-                        operacao = 5;           // Converter Polar retangular
+                        if(soma[n] == '='){     // Converter Polar retangular
+                    operacao = 5;}
 n = n+1;
 
-while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
+            //COLOCAR UM WHILE PRA PULAR TUDO NO CASO DE CONVERSÃO
+
+    while(soma[n] < 48 && soma[n] > 57 && soma[n] != '-'){      //são validos os algarismo e um caracter de -. o caracter de + é desnecessario.{
     n = n+1;
 }
 
-if (soma[n] == 45){
+if (soma[n] == '-'){
     sinalc = 1;
     n = n+1;
 }
-while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
+while(soma[n] < 48 && soma[n] > 57){            //nesse caso se e aceito um algarismo como caracter valido
     n = n+1;
 }
 
-if (soma[n] == 43){
+if (soma[n] == '+'){
     sinalc = 0;
     n = n+1;
 }
-while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
+while(soma[n] < 48 && soma[n] > 57){            //nesse caso se e aceito um algarismo como caracter valido
     n = n+1;
-}
-
-if (soma[n] == '+' || soma[n] == '-'){
-    return 1;
 }
 
 if(operacao == 0 || operacao == 1 || operacao == 2 || operacao == 3){
     while (soma[n] != '+' && soma[n] != '-'){
         c = (c * 10) + (soma[n] - 48);
         n = n + 1;
-        while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
-            n = n+1;
-        }
-    }
-}
-else
-     while (soma[n] >= '0' && soma[n] <= '9'){
-        c = (c * 10) + (soma[n] - 48);
-        n = n + 1;
-        while(soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9'){
+        while(soma[n] < 48 && soma[n] > 57 && soma[n] != '+' && soma[n] != '-'){    // a leitura do segundo numero se da de maneira analoga a do primeiro numero.
             n = n+1;
         }
     }
 
-if (soma[n] == '-'){
-    sinald = 1;
-}
-n = n+1;
-
-while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
+    if (soma[n] == '-'){
+        sinald = 1;
+    }
     n = n+1;
-}
 
-if (soma[n] == '+' || soma[n] == '-'){
-    return 1;
-}
-
-while (soma[n] != 'i'  && soma[n] != 'p'){
-    d = (d * 10) + (soma[n] - 48);
-    n = n + 1;
-    while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
+    while(soma[n] < 48 && soma[n] > 57){
         n = n+1;
     }
-}
-if(soma[n] == 'p'){
-    tiponum2 = 1;
+
+    while (soma[n] != 'i'  && soma[n] != 'p'){
+        d = (d * 10) + (soma[n] - 48);
+        n = n + 1;
+        while(soma[n] < 48 && soma[n] > 57 && soma[n] != 'i' && soma[n] != 'p'){
+                n = n+1;
+        }
+    }
+    if(soma[n] == 'p'){
+            tiponum2 = 1;
+    }
 }
 
-//NUMEROS NEGATIVOS
+if (operacao == 4){
+    c = soma[n] -48;
+}
+
+//NUMEROS NEGATIVOS                  nesse momento, caso alguma flag de numero negativo tenha sido ativada, ele sera multiplicado por -1
 
 if(sinala == 1){
     a = a * (-1);
@@ -201,7 +193,7 @@ if(sinald == 1){
     d = d * (-1);
 }
 
-//CONVERSãO RETANGULAR/POLAR
+//CONVERSãO RETANGULAR/POLAR        nesse momento, todos os numeros são convertidos para ambas as formas
 
     if (tiponum1 == 1){
     ap = a;
@@ -245,10 +237,8 @@ if (operacao == 2){
 if (operacao == 3){
     resr = ((ai*ci)+(bi*di))/((ci*ci)+(di*di));
     resi = ((bi*ci)-(ai*di))/((ci*ci)+(di*di));
-    while(soma[n] != '+' && soma[n] != '-' && soma[n] != '*' && soma[n] != '/' && soma[n] != '^' &&  soma[n] != '0' && soma[n] != '1' && soma[n] != '2' && soma[n] != '3' && soma[n] != '4' && soma[n] != '5' && soma[n] != '6' && soma[n] != '7' && soma[n] != '8' && soma[n] != '9' && soma[n] != 'i' && soma[n] != 'p'){
-        n = n+1;
-    }
 }
+
 //potenciaÇÃo
 if (operacao == 4){
         resr = ai;
@@ -274,6 +264,7 @@ if(operacao == 5){
         printf("o numero na forma retangular e:\n%.2lf + %.2lfi\n", resr, resi);
     }
 }
+
 //resultado
 if(operacao == 0 || operacao == 1 || operacao == 2 || operacao == 3 ||operacao == 4){
 
@@ -286,8 +277,8 @@ if(operacao == 0 || operacao == 1 || operacao == 2 || operacao == 3 ||operacao =
         }
         else
             if(result == 1){
-                ap = sqrt((resr*resr)+(resi*resi));
-                bp = (atan(resi/resr)* (180/pi));
+                ap = sqrt((resr*resr)+(resi*resi));                 //aqui aproveito as variaveis ap e bp que nao estavam sendo mais utilizadas, para fazer a conversão
+                bp = (atan(resi/resr)* (180/pi));                   //caso seja solicitado resultado polar
                 printf("o resultado e:\n%.2lf + %.2lfp\n", ap, bp);
                 result = -1;
             }
@@ -295,5 +286,7 @@ if(operacao == 0 || operacao == 1 || operacao == 2 || operacao == 3 ||operacao =
                 printf("Apenas 0 e 1 sao aceitos.\n");
     }
 }
+n = 0;} while(n == 0);
+
 return 0;
 }
